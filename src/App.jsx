@@ -1,19 +1,15 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
-// Library imports
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-// Routes
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Dashboard, { dashboardAction, dashboardLoader } from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Main, { mainLoader } from "./layout/Main";
 import { logoutAction } from "./actions/logout";
 import { deleteBudget } from "./actions/deleteBudget";
-import ExpensesPage, { expensesAction, expensesLoader } from "./pages/ExpensesPage";
+import ExpensesPage, {
+  expensesAction,
+  expensesLoader,
+} from "./pages/ExpensesPage";
 import BudgetPage, { budgetAction, budgetLoader } from "./pages/BudgetPage";
 
 const router = createBrowserRouter([
@@ -28,14 +24,14 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         loader: dashboardLoader,
         action: dashboardAction,
-        errorElement: <Error />
+        errorElement: <Error />,
       },
       {
         path: "expenses",
         element: <ExpensesPage />,
         loader: expensesLoader,
         action: expensesAction,
-        errorElement: <Error />
+        errorElement: <Error />,
       },
       {
         path: "budget/:id",
@@ -47,26 +43,28 @@ const router = createBrowserRouter([
           {
             path: "delete",
             action: deleteBudget,
-          }
-        ]
+          },
+        ],
       },
       {
         path: "logout",
         action: logoutAction,
-      }
-    ]
+      },
+    ],
   },
   {
     path: "*",
-    element: <Error />
-  }
+    element: <Error />,
+  },
 ]);
 
 function App() {
-  return <div className="App">
-    <RouterProvider router={router} />
-    <ToastContainer />
-  </div>;
+  return (
+    <div className="App">
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </div>
+  );
 }
 
 export default App;
